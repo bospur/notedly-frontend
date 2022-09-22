@@ -1,0 +1,29 @@
+.menu {
+    width: 100%;
+    max-width: 1400px;
+    padding: 0 20px;
+    display: flex;
+    align-items: center;
+}
+.list {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-inline-start: 0;
+    list-style: none;
+}
+.item {
+    display: flex;
+    align-items: flex-end;
+    gap: 5px;
+}
+.item a {
+    text-decoration: none;
+    color: #000000;
+}
+.item svg {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
