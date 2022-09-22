@@ -24,7 +24,7 @@ const GET_NOTES = gql`
 
 const Home = () => {
     const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
-    console.log(data)
+    
     if (loading) return <p>Loading...</p>;
     if (error) return <p>Error!</p>;
 
