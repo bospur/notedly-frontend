@@ -1,26 +1,10 @@
 import React from 'react';
-import MainButton from '../ui/buttons/main-button';
-import { useQuery, gql } from '@apollo/client';
+import { useQuery } from '@apollo/client';
+import NoteFeed from '../components/NoteFeed/NoteFeed';
+import { GET_NOTES } from '../utils.js/api';
+import cl from './pages-styles/home.module.css';
 
-const GET_NOTES = gql`
-    query NoteFeed($cursor: String) {
-        noteFeed(cursor: $cursor) {
-        cursor
-        hasNextPage
-        notes {
-            id
-            createdAt
-            content
-            favoriteCount
-            author {
-            username
-            id
-            avatar
-            }
-        }
-        }
-    }
-`
+
 
 const Home = () => {
     const { data, loading, error, fetchMore } = useQuery(GET_NOTES);
@@ -29,13 +13,9 @@ const Home = () => {
     if (error) return <p>Error!</p>;
 
     return (
-        <div>
-            {
-                data.noteFeed.notes.map(note => (
-                    <div key={note.id}>{note.content}</div>
-                ))
-            }
-        </div>
+        <section className={cl.home}>
+            <NoteFeed notes={data} />
+        </section>
     );
 }
 
