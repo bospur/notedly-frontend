@@ -14,41 +14,46 @@
     list-style: none;
 }
 .item {
+    position: relative;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     gap: 5px;
-    transition: .3 ease-in;
-}
-.item a {
-    position: relative;
-    text-decoration: none;
-    color: var(--main-text-color);
     transition: .3 ease-in;
 }
 .item:hover a {
     color: var(--detail-color-main);
+} 
+.link  {
+    text-decoration: none;
+    color: var(--main-text-color); 
 }
-/* .item a::before {
+.link a:hover {
+    color: var(--detail-color-main);   
+}
+.link a {
+    position: relative;
+}
+.item::before {
     position: absolute;
     content: '';
     height: 2px;
     background-color: var(--detail-color-main);
-    width: 100%;
-    max-width: ;
-    bottom: -2px;
+    width: 0;
+    bottom: -3px;
     left: 0;
-    transition: all .3 ease-in;
+    transition:  .3s ease-in;
 }
-.item a:hover::before {
-    transition: .3 ease-in;
+.item:hover::before {
     width: 100%;
-} */
+} 
 .item svg {
     width: 20px;
     height: 20px;
     cursor: pointer;
     fill: var(--main-text-color);
+    transition: .3s ease-in;
 }
 .item:hover svg {
-    /* fill: var(--detail-color-main); */
+    fill: var(--detail-color-main);
 }

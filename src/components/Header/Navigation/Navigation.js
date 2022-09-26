@@ -1,6 +1,5 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import FavoriteIcon from '../../../ui/icons/favorite-icon';
 import HomeIcon from '../../../ui/icons/home-icon';
 import NoteFavoriteIcon from '../../../ui/icons/note-favorite-icon';
 import NotesIcon from '../../../ui/icons/notes-icon';
@@ -12,15 +11,15 @@ const Navigation = () => {
             <ul className={cl.list}>
                 <li className={cl.item}>
                     <HomeIcon/>
-                    <Link to="/">Home</Link>
+                    <Link to="/" className={cl.link}>Home</Link>
                 </li>
                 <li className={cl.item}>
                     <NotesIcon/>
-                    <Link to="/mynotes">My Notes</Link>
+                    <Link to="/mynotes" className={cl.link}>My Notes</Link>
                 </li>
                 <li className={cl.item}>
                     <NoteFavoriteIcon />
-                    <Link to="/favorites">Favorites</Link>
+                    <Link to="/favorites" className={cl.link}>Favorites</Link>
                 </li>
             </ul>
         </nav>

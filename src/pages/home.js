@@ -15,8 +15,8 @@ const Home = () => {
         console.log(error);
         return <p>Error!</p>;
     }
-    // const hasNextPage = data.noteFeed.hasNextPage;
-    const hasNextPage = true;
+    const hasNextPage = data.noteFeed.hasNextPage;
+    // const hasNextPage = true;
 
     const loadMoreClick = (e) => {
         e.preventDefault();
