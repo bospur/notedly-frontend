@@ -1,0 +1,15 @@
+.login {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    height: 10px;
+    width: 100%;
+    background-color: var(--loginBar-offline);
+    transition: .3s ease-in;
+    color: var(--main-white);
+}
+.login:hover {
+    cursor: pointer;
+    height: 20px;
+}

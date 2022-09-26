@@ -1,0 +1,19 @@
+.note {
+    width: 100%;
+    max-width: 800px;
+    min-height: 400px;
+    background-color: #FFFFFF;
+    border-radius: 20px;
+    margin: 0 auto;
+    margin-top: 50px;
+    padding: 20px;
+}
+.noteHeader {
+    display: flex;
+    gap: 10px;
+}
+.noteMain {
+    width: 100%;
+    margin: 0 auto;
+    margin-top: 20px;
+}

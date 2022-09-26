@@ -1,13 +1,34 @@
-import React from 'react';
+import React, { useState } from 'react';
 import cl from './Note.module.css';
 import { convertDate } from '../../../utils.js/util';
-import FavoriteIcon from '../../../ui/icons/favorite-icon';
 import NoteFavoriteIcon from '../../../ui/icons/note-favorite-icon';
 import SettingIcon from '../../../ui/icons/setting-icon';
+import { Link, Redirect } from 'react-router-dom';
 
 const Note = ({ note }) => {
+    const [isSetting, setIsSetting] = useState(false);
     const date = convertDate(note.createdAt);
 
+    const onSettingIconClick = () => {
+        setIsSetting(!isSetting)
+    }
+
+    const isActiveStyle = isSetting ? 'auto' : '0';
+    const isActiveVisible = isSetting ? 'visible' : 'hidden';
+
+    const onEditClick = () => {
+        console.log("click edit")
+    }
+    const onDetailClick = () => {
+        console.log('detail click')
+         
+        
+         
+    }
+    const onDeleteClick = () => {
+        console.log('delete click')
+    }
+    
     return (
         <li className={cl.noteItem}>
             <div className={cl.noteHeader}>
@@ -17,7 +38,7 @@ const Note = ({ note }) => {
                     className={cl.noteAvatar}
                 />
                 <div>
-                    <a href='#' className={cl.noteUser}>{note.author.username}</a>
+                    <Link to={`note/${note.id}`} className={cl.noteUser}>{note.author.username}</Link>
                     <p className={cl.date}>{date}</p>
                 </div>
                 <div className={cl.favorites}>
@@ -25,7 +46,17 @@ const Note = ({ note }) => {
                     {note.favotiteCount ? <p>{note.favotiteCount}</p> : ''}
                 </div>
                 <div className={cl.setting}>
-                    <SettingIcon />
+                    <SettingIcon onClick={onSettingIconClick}/>
+                    {
+                        isSetting &&
+                        <div className={cl.settingMenu} style={{ height: `${isActiveStyle}`, overflow: `${isActiveVisible}`}}>
+                            <ul>
+                                <li onClick={onEditClick} style={{ color: 'var(--edit-color-main)'}}>Edit</li>
+                                <li onClick={onDetailClick}><Link to={`/note/${note.id}`}>Detail</Link></li>
+                                <li onClick={onDeleteClick} style={{ color: 'var(--delete-color-main)'}}>Delete</li>
+                            </ul>
+                        </div>
+                    }
                 </div>
             </div>
             <div className={cl.noteMain}>

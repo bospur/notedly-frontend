@@ -17,8 +17,8 @@ export const convertDate = (dateString) => {
     const month = date.getMonth();
     const day = date.getDate();
     const year = date.getFullYear();
-    const hours = date.getHours();
-    const minutes = date.getMinutes();
+    const hours = date.getHours().toString().padStart(2, '0');
+    const minutes = date.getMinutes().toString().padStart(2, '0');
 
     const nowDate = new Date(Date.now());
     const nowYear = nowDate.getFullYear();

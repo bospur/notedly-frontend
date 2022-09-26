@@ -14,7 +14,7 @@
 
 .noteUser {
     text-decoration: none;
-    color: #2964ac;
+    color: var(--detail-color-main);
     cursor: pointer;
 }
 
@@ -40,13 +40,47 @@
     top: 0;
     right: 20px;
 }
+.setting:hover svg {
+    fill: var(--detail-color-main);
+    /* fill: none; */
+    stroke: var(--detail-color-main);
+    stroke-width:0%;
+    
+}
 .favorites svg {
-    width: 20px;
-    height: 20px;
+    width: 22px;
+    height: 22px;
     cursor: pointer;
+    fill: var(--loginBar-online);
 }
 .setting svg {
     width: 20px;
     height: 20px;
+    cursor: pointer;
+    fill: var(--main-text-color);
+}
+.settingMenu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    height: 0;
+    overflow: hidden;
+    transition: .4 ease-in;
+    /* color: #0fc372; */
+    /* transition: .3s ease-in; */
+}
+
+.settingMenu ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 10px;
+    /* border: 2px dashed var(--detail-color-main); */
+    border-radius: 5px;
+    opacity: .8;
+}
+.settingMenu li {
+    opacity: .8;
     cursor: pointer;
 }

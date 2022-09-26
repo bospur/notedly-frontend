@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import FavoriteIcon from '../../../ui/icons/favorite-icon';
 import HomeIcon from '../../../ui/icons/home-icon';
+import NoteFavoriteIcon from '../../../ui/icons/note-favorite-icon';
 import NotesIcon from '../../../ui/icons/notes-icon';
 import cl from './navigation.module.css';
 
@@ -18,7 +19,7 @@ const Navigation = () => {
                     <Link to="/mynotes">My Notes</Link>
                 </li>
                 <li className={cl.item}>
-                    <FavoriteIcon />
+                    <NoteFavoriteIcon />
                     <Link to="/favorites">Favorites</Link>
                 </li>
             </ul>
