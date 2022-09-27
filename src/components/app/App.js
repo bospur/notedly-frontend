@@ -1,7 +1,7 @@
 import Pages from '../../pages';
 import Header from '../Header/Header';
 import './App.css';
-import { ApolloClient, ApolloProvider, createHttpLink, useApolloClient, InMemoryCache } from '@apollo/client';
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, gql } from '@apollo/client';
 import LoginBar from '../LoginBar/LoginBar';
 import { setContext} from 'apollo-link-context';
 
@@ -22,12 +22,17 @@ const client = new ApolloClient({
   resolvers: {},
   connectToDevTools: true
 });
-cache.writeFragment({
+
+client.writeQuery({
+  query: gql`
+    {
+      isLoggedIn @client
+    }
+  `,
   data: {
     isLoggedIn: !!localStorage.getItem('token')
   }
-});
-
+})
 function App() {
   
   return (

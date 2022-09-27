@@ -6,17 +6,24 @@ import cl from './LoginBar.module.css';
 
 const LoginBar = () => {
     const history = useHistory();
-    const data = useQuery(IS_LOGGED_IN)
-    console.log(data)
+    const { data } = useQuery(IS_LOGGED_IN);
+
     const onLoginBarClick = () => {
+        if (!data.isLoggedIn) {
+            history.replace({
+                pathname: '/login'
+            })
+            return
+        }
         history.replace({
-            pathname: '/login'
+            pathname: '/profile'
         })
     };
-    // const backgroundColor = data.isLoggedIn ? 'var(--loginBar-online)': 'var(--loginBar-offline)';
+    const backgroundColor = data.isLoggedIn ? 'var(--loginBar-online)': 'var(--loginBar-offline)';
+
     return (
-        <section className={cl.login} onClick={onLoginBarClick}>
-            Login
+        <section className={cl.login} onClick={onLoginBarClick} style={{backgroundColor}}>
+            {data.isLoggedIn ? 'Profile' : 'Login'}
         </section>
     );
 }

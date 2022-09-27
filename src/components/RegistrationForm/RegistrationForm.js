@@ -4,7 +4,7 @@ import FormInput from '../../ui/inputs/FormInput';
 import PasswordInput from '../../ui/inputs/PasswordInput';
 import cl from './RegistrationForm.module.css';
 import { Link, useHistory } from 'react-router-dom';
-import { useMutation, useApolloClient } from '@apollo/client';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
 import { SIGNUP_USER } from '../../utils.js/api';
 
 
@@ -20,7 +20,14 @@ const RegistrationForm = () => {
     const [ signUp , { loading, error }] = useMutation(SIGNUP_USER, {
         onCompleted: data => {
             localStorage.setItem('token', data.signUp);
-            client.writeData({ data: { isLoggedIn: true }})
+            client.writeQuery({
+                query: gql`
+                {
+                    isLoggedIn @client
+                }
+                `,
+                data: { isLoggedIn: true }
+            })
             setForm({
                 username: '',
                 email: '',
