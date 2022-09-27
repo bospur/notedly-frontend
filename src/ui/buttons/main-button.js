@@ -5,7 +5,7 @@ const MainButton = styled.button`
     display: block;
     padding: 10px;
     border: none;
-    // border: 1px solid var(--edit-color-main);
+    border: 1px solid var(--edit-color-main);
     border-radius: 5px;
     font-size: 18px;
     color: var(--main-text-color);

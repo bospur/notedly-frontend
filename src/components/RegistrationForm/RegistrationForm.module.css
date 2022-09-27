@@ -1,4 +1,5 @@
 .login {
+    position: relative;
     max-width: 350px;
     width: 100%;
     margin-top: 50px;
@@ -24,5 +25,14 @@
 }
 
 .text {
+    text-align: center;
+}
+
+.error {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    color: rgb(188, 21, 21);
     text-align: center;
 }
