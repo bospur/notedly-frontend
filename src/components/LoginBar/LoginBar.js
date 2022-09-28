@@ -9,7 +9,7 @@ const LoginBar = () => {
     const { data } = useQuery(IS_LOGGED_IN);
 
     const onLoginBarClick = () => {
-        if (!data.isLoggedIn) {
+        if (!data?.isLoggedIn) {
             history.replace({
                 pathname: '/login'
             })
@@ -19,11 +19,11 @@ const LoginBar = () => {
             pathname: '/profile'
         })
     };
-    const backgroundColor = data.isLoggedIn ? 'var(--loginBar-online)': 'var(--loginBar-offline)';
+    const backgroundColor = data?.isLoggedIn ? 'var(--loginBar-online)': 'var(--loginBar-offline)' || '';
 
     return (
         <section className={cl.login} onClick={onLoginBarClick} style={{backgroundColor}}>
-            {data.isLoggedIn ? 'Profile' : 'Login'}
+            {data?.isLoggedIn ? 'Profile' : 'Login' || 'Login'}
         </section>
     );
 }

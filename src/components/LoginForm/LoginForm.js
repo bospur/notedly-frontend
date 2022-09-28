@@ -1,21 +1,60 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import MainButton from '../../ui/buttons/main-button';
 import FormInput from '../../ui/inputs/FormInput';
 import PasswordInput from '../../ui/inputs/PasswordInput';
 import cl from './LoginForm.module.css';
 import { Link } from 'react-router-dom';
+import { SIGNIN_USER } from '../../utils.js/api';
+import { useMutation, useApolloClient, gql } from '@apollo/client';
 
 const LoginForm = () => {
     const [form, setForm] = useState({
-        userName: '',
+        username: '',
         email: '',
         password: ''
     });
+    const [errorMessage, setErrorMessage] = useState('');
 
+    const history = useHistory();
+    const client = useApolloClient();
+
+    const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+        onCompleted: data => {
+            localStorage.getItem('token', data.signIn);
+            client.writeQuery({
+                query: gql`
+                {
+                    isLoggedIn @client
+                }
+                `,
+                data: { isLoggedIn: true }
+            });
+
+            setForm({
+                username: '',
+                email: '',
+                password: ''
+            });
+
+            history.replace({
+                pathname: "/"
+            });
+        },
+        onError: error => {
+            console.log(error)
+            setErrorMessage(error.toString())
+        }
+    })
     const onSubmitHandler = (e) => {
         e.preventDefault();
-
-        console.log(form)
+        
+        signIn({
+            variables: {
+                ...form
+            }
+        })
+        
     };
 
     const onChange = e => {
@@ -30,12 +69,12 @@ const LoginForm = () => {
             <h1 className={cl.title}>Sign In</h1>
             <form className={cl.loginForm} onSubmit={onSubmitHandler}>
                 <FormInput 
-                    name="userName"
+                    name="username"
                     type="text"
                     placeholder="Username"
                     id="username"
                     label="Username"
-                    value={form.userName}
+                    value={form.username}
                     onChange={onChange}
                 />
                 <FormInput 

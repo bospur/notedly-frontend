@@ -5,6 +5,7 @@ import Home from './home';
 import Login from './login';
 import Mynotes from './mynotes';
 import NotePage from './notePage';
+import Profile from './profile';
 import Registration from './registration';
 
 const Pages = () => {
@@ -27,6 +28,9 @@ const Pages = () => {
             </Route>
             <Route path="/registration">
                 <Registration />
+            </Route>
+            <Route path="/profile">
+                <Profile />
             </Route>
        </Switch>
     );

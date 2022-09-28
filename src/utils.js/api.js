@@ -42,6 +42,11 @@ export const SIGNUP_USER = gql`
     }
 `;
 
+export const SIGNIN_USER = gql`
+    mutation signIn($username: String!, $email: String!, $password: String!) {
+        signIn(username: $username, email: $email, password: $password)
+    }
+`
 export const IS_LOGGED_IN = gql`
     {
         isLoggedIn @client
