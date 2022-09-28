@@ -21,7 +21,7 @@ const LoginForm = () => {
 
     const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
         onCompleted: data => {
-            localStorage.getItem('token', data.signIn);
+            localStorage.setItem('token', data.signIn);
             client.writeQuery({
                 query: gql`
                 {
