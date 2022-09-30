@@ -19,7 +19,7 @@ const LoginForm = () => {
     const history = useHistory();
     const client = useApolloClient();
 
-    const [signIn, { loading, error }] = useMutation(SIGNIN_USER, {
+    const [ signIn ] = useMutation(SIGNIN_USER, {
         onCompleted: data => {
             localStorage.setItem('token', data.signIn);
             client.writeQuery({
@@ -31,15 +31,14 @@ const LoginForm = () => {
                 data: { isLoggedIn: true }
             });
 
+            history.replace({
+                pathname: "/"
+            });
             setForm({
                 username: '',
                 email: '',
                 password: ''
-            });
-
-            history.replace({
-                pathname: "/"
-            });
+            });        
         },
         onError: error => {
             console.log(error)
@@ -53,8 +52,7 @@ const LoginForm = () => {
             variables: {
                 ...form
             }
-        })
-        
+        });
     };
 
     const onChange = e => {
@@ -67,7 +65,11 @@ const LoginForm = () => {
     return (
         <section className={cl.login}>
             <h1 className={cl.title}>Sign In</h1>
-            <form className={cl.loginForm} onSubmit={onSubmitHandler}>
+            {
+                errorMessage && 
+                <p className={cl.error}>{errorMessage}</p>
+            }
+            <form className={cl.loginForm} onSubmit={onSubmitHandler} onChange={() => setErrorMessage('')}>
                 <FormInput 
                     name="username"
                     type="text"

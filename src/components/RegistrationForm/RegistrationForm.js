@@ -17,7 +17,7 @@ const RegistrationForm = () => {
     const [errorMessage, setErrorMessage] = useState('');
     const history = useHistory();
     const client = useApolloClient();
-    const [ signUp , { loading, error }] = useMutation(SIGNUP_USER, {
+    const [ signUp ] = useMutation(SIGNUP_USER, {
         onCompleted: data => {
             localStorage.setItem('token', data.signUp);
             client.writeQuery({

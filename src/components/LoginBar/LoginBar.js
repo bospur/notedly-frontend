@@ -19,11 +19,12 @@ const LoginBar = () => {
             pathname: '/profile'
         })
     };
+    
     const backgroundColor = data?.isLoggedIn ? 'var(--loginBar-online)': 'var(--loginBar-offline)' || '';
 
     return (
         <section className={cl.login} onClick={onLoginBarClick} style={{backgroundColor}}>
-            {data?.isLoggedIn ? 'Profile' : 'Login' || 'Login'}
+            {data?.isLoggedIn ? `Profile` : 'Login' || 'Login'}
         </section>
     );
 }

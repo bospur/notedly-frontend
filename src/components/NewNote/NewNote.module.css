@@ -1,0 +1,9 @@
+.newNote {
+    max-width: 900px;
+    width: 100%;
+    background: var(--main-white);
+    color:var(--main-text-color);
+    padding: 20px;
+    margin-top: 20px;
+    border-radius: 20px;
+}

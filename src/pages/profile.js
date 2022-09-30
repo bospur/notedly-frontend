@@ -9,6 +9,7 @@ import cl from './pages-styles/profile.module.css';
 const Profile = () => {
     const history = useHistory();
     const { client } = useQuery(IS_LOGGED_IN);
+    const { data } = useQuery(IS_LOGGED_IN);
 
     const logOut = () => {
         localStorage.removeItem('token');
@@ -17,18 +18,26 @@ const Profile = () => {
             query: gql`
             {
                 isLoggedIn @client
+                user @client
             }
             `,
-            data: { isLoggedIn: false }
+            data: { isLoggedIn: false , user: ''}
         });
         history.replace({
             pathname: "/"
         })
     }
+
+    if (!data.isLoggedIn) {
+        history.replace({
+            pathname: "/"
+        })
+    }
+
     return (
         <section className={cl.profile}>
-        <UserInfo />
-        <MainButton onClick={logOut}>Log out</MainButton>
+            <UserInfo />
+            <MainButton onClick={logOut}>Log out</MainButton>
         </section>
     );
 }

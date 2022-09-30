@@ -4,6 +4,7 @@ import './App.css';
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache, gql } from '@apollo/client';
 import LoginBar from '../LoginBar/LoginBar';
 import { setContext} from 'apollo-link-context';
+import { useEffect } from 'react';
 
 const uri = process.env.REACT_APP_API_URL;
 const httpLink = createHttpLink({ uri });
@@ -23,17 +24,20 @@ const client = new ApolloClient({
   connectToDevTools: true
 });
 
-client.writeQuery({
-  query: gql`
-    {
-      isLoggedIn @client
-    }
-  `,
-  data: {
-    isLoggedIn: !!localStorage.getItem('token')
-  }
-})
 function App() {
+
+  useEffect(() => {
+    client.writeQuery({
+      query: gql`
+        {
+          isLoggedIn @client
+        }
+      `,
+      data: {
+        isLoggedIn: !!localStorage.getItem('token')
+      }
+    });
+  }, []);
   
   return (
     <ApolloProvider client={client}>
