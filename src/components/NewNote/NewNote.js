@@ -6,9 +6,12 @@ import NewNoteForm from './NewNoteForm/NewNoteForm';
 
 const NewNote = () => {
     const { data } = useQuery(GET_ME);
-    console.log(data)
+    const me = data?.me || null;
+    const title = me ? `Hello ${me.username}, what's new?` : 'You need to log in to add notes.'
+
     return (
         <section className={cl.newNote}>
+            <h2 className={cl.title}>{title}</h2>
             <NewNoteForm />
         </section>
     );
