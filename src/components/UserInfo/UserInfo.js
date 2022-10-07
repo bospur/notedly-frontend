@@ -11,7 +11,6 @@ const UserInfo = () => {
     
    if (data) {
     return (
-        // <></>
         <section className={cl.user}>
             <h2 className={cl.title}>You</h2>
             <img 

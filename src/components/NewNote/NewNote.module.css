@@ -11,3 +11,8 @@
     font-size: 17px;
     color: var(--main-text-color);
 }
+.newNoteHeader {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
